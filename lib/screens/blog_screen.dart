@@ -1,0 +1,221 @@
+import 'package:flutter/material.dart';
+
+import 'home_screen.dart';
+
+class BlogScreen extends StatelessWidget {
+  const BlogScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            // ignore: prefer_const_literals_to_create_immutables
+            children: [
+              const Padding(
+                padding: EdgeInsets.only(left: 28, top: 58),
+                child: Text(
+                  "Blog",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w700,
+                    fontSize: 27,
+                  ),
+                ),
+                
+              ),
+              SizedBox(height: 29,),
+              ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: _blogList.length,
+                itemBuilder: ((context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(right: 30, left: 26),
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(24),
+                        side: BorderSide(
+                          color: Color(0xffBECADA),
+                        ),
+                      ),
+                      margin:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                      elevation: 7,
+                      color: Colors.white,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ListTile(
+                          title: Padding(
+                            padding: const EdgeInsets.only(top: 28, left: 11),
+                            child: Text(
+                              _blogList[index]['title']!,
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.w700,
+                                  color: Color(0xff0E1012)),
+                            ),
+                          ),
+                          subtitle: Padding(
+                            padding: const EdgeInsets.only(top: 23, left: 11),
+                            child: Text(
+                              _blogList[index]['description']!,
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color(0xff7B8D9E)),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                }),
+              )
+            ],
+          ),
+        ),
+      ),
+       bottomNavigationBar: Container(
+          height: 70,
+          color: Colors.white,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Column(
+                children: [
+                  IconButton(
+                    icon: Icon(
+                      Icons.book_sharp,
+                      size: 40,
+                      color: Colors.grey,
+                    ),
+                    onPressed: () {},
+                  ),
+                  Text(
+                    "Report",
+                    style: TextStyle(color: Color(0xff7B8D9E)),
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  IconButton(
+                    icon: Icon(
+                      Icons.home,
+                      size: 40,
+                      color: Colors.grey,
+                    ),
+                    onPressed: () {
+                      Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => HomeScreen()));
+                    },
+                  ),
+                  Text(
+                    "Home",
+                    style: TextStyle(color: Color(0xff7B8D9E)),
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  IconButton(
+                    icon: Icon(
+                      Icons.notifications_sharp,
+                      size: 40,
+                      color: Colors.grey,
+                    ),
+                    onPressed: () {},
+                  ),
+                  Text(
+                    "Notifications",
+                    style: TextStyle(color: Color(0xff7B8D9E)),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+    );
+  }
+}
+
+List<Map<String, String>> _blogList = [
+  {
+    "title": "Best foods for healt!",
+    "description":
+        "You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu ook this menu.You should look this menuook this menu.You should look this."
+  },
+  {
+    "title": "Best foods for healt!",
+    "description":
+        "You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu ook this menu.You should look this menuook this menu.You should look this."
+  },
+  {
+    "title": "Best foods for healt!",
+    "description":
+        "You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu ook this menu.You should look this menuook this menu.You should look this."
+  },
+  {
+    "title": "Best foods for healt!",
+    "description":
+        "You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu ook this menu.You should look this menuook this menu.You should look this."
+  },
+  {
+    "title": "Best foods for healt!",
+    "description":
+        "You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu ook this menu.You should look this menuook this menu.You should look this."
+  },
+  {
+    "title": "Best foods for healt!",
+    "description":
+        "You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu ook this menu.You should look this menuook this menu.You should look this."
+  },
+  {
+    "title": "Best foods for healt!",
+    "description":
+        "You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu ook this menu.You should look this menuook this menu.You should look this."
+  },
+  {
+    "title": "Best foods for healt!",
+    "description":
+        "You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu ook this menu.You should look this menuook this menu.You should look this."
+  },
+  {
+    "title": "Best foods for healt!",
+    "description":
+        "You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu ook this menu.You should look this menuook this menu.You should look this."
+  },
+  {
+    "title": "Best foods for healt!",
+    "description":
+        "You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu ook this menu.You should look this menuook this menu.You should look this."
+  },
+  {
+    "title": "Best foods for healt!",
+    "description":
+        "You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu ook this menu.You should look this menuook this menu.You should look this."
+  },
+  {
+    "title": "Best foods for healt!",
+    "description":
+        "You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu ook this menu.You should look this menuook this menu.You should look this."
+  },
+  {
+    "title": "Best foods for healt!",
+    "description":
+        "You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu ook this menu.You should look this menuook this menu.You should look this."
+  },
+  {
+    "title": "Best foods for healt!",
+    "description":
+        "You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu ook this menu.You should look this menuook this menu.You should look this."
+  },
+  {
+    "title": "Best foods for healt!",
+    "description":
+        "You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu ook this menu.You should look this menuook this menu.You should look this."
+  },
+];
