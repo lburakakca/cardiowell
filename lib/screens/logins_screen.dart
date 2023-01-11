@@ -8,13 +8,11 @@ import 'package:projedonem/screens/register_screen.dart';
 import '../service/auth.dart';
 import 'home_screen.dart';
 
-
-
-
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
   State<LoginScreen> createState() => _LoginScreenState();
 }
+
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -24,7 +22,6 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 57, 76, 201),
       body: SingleChildScrollView(
-
         child: SafeArea(
           child: Center(
             child: Column(
@@ -75,6 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 20, vertical: 20),
                           child: TextField(
+                            controller: _emailController,
                             decoration: InputDecoration(
                                 border: InputBorder.none, hintText: 'E-Mail'),
                           ),
@@ -128,6 +126,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 20, vertical: 20),
                           child: TextField(
+                            controller: _passwordController,
                             obscureText: true,
                             decoration: InputDecoration(
                                 border: InputBorder.none, hintText: 'Password'),
@@ -146,8 +145,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 GestureDetector(
                   onTap: () {
                     _authService
-                        .signIn(
-                        _emailController.text, _passwordController.text)
+                        .signIn(_emailController.text, _passwordController.text)
                         .then((value) {
                       return Navigator.push(
                           context,

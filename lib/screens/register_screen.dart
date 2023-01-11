@@ -18,7 +18,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _controllerUserName = TextEditingController();
   final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
-  final TextEditingController _controllerPasswordAgain = TextEditingController();
+  final TextEditingController _controllerPasswordAgain =
+      TextEditingController();
   AuthService _authService = AuthService();
 
 //surname delete //pass again
@@ -35,7 +36,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     }
   }*/
 
- /* Future<void> createUserWithEmailAndPassword() async {
+  /* Future<void> createUserWithEmailAndPassword() async {
     try {
       await Auth().createUserWithEmailAndPassword(
         email: _controllerEmail.text,
@@ -108,7 +109,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       height: 5,
                     ),
                     Text(
-                      'Password',
+                      'Password Again',
                       style: TextStyle(color: Colors.white),
                     ),
                     SizedBox(
@@ -125,9 +126,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           if (isLogin) {
                             _authService
                                 .createPerson(
-                                _controllerUserName.text,
-                                _controllerEmail.text,
-                                _controllerPassword.text)
+                                    _controllerUserName.text,
+                                    _controllerEmail.text,
+                                    _controllerPassword.text)
                                 .then((value) {
                               return Navigator.push(
                                   context,
@@ -169,9 +170,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
 }
 
 Widget LoginContainer(
-    String title,
-    TextEditingController controller,
-    ) {
+  String title,
+  TextEditingController controller,
+) {
   return Container(
     height: 60,
     alignment: Alignment.centerLeft,
