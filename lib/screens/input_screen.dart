@@ -1,6 +1,5 @@
-import 'package:demo2project/screens/report_screen.dart';
 import 'package:flutter/material.dart';
-
+import 'package:projedonem/screens/report_screen.dart';
 import 'home_screen.dart';
 
 class InputScreen extends StatelessWidget {
@@ -10,10 +9,10 @@ class InputScreen extends StatelessWidget {
   final  _bloodPressureController = TextEditingController();
   final  _cholesterolController = TextEditingController();
   final  _fastingBlueSugarController = TextEditingController();
-  final  _restEcgController = TextEditingController();
-  final  _maxHeartRateController = TextEditingController();
+  //final  _restEcgController = TextEditingController();
+  //final  _maxHeartRateController = TextEditingController();
   final  _exangController = TextEditingController();
-  final  _oldpeakController = TextEditingController();
+  //final  _oldpeakController = TextEditingController();
   final  _slopeController = TextEditingController();
   final  _caController = TextEditingController();
 
@@ -54,7 +53,7 @@ class InputScreen extends StatelessWidget {
                           controller: _ageController,
                           decoration: const InputDecoration(
                             border: InputBorder.none,
-                            hintText: 'Age'
+                            hintText: ' Age'
                           ),
                         ),
                       ),
@@ -73,7 +72,7 @@ class InputScreen extends StatelessWidget {
                           controller: _sexController,
                           decoration: const InputDecoration(
                             border: InputBorder.none,
-                            hintText: 'Sex'
+                            hintText: ' Sex'
                           ),
                         ),
                       ),
@@ -92,7 +91,7 @@ class InputScreen extends StatelessWidget {
                           controller: _cerebralPalsyController,
                           decoration: const InputDecoration(
                             border: InputBorder.none,
-                            hintText: 'Cerebral Palsy'
+                            hintText: ' Cerebral Palsy'
                           ),
                         ),
                       ),
@@ -111,7 +110,7 @@ class InputScreen extends StatelessWidget {
                           controller: _bloodPressureController,
                           decoration: const InputDecoration(
                             border: InputBorder.none,
-                            hintText: 'Blood Pressure'
+                            hintText: ' Blood Pressure'
                           ),
                         ),
                       ),
@@ -130,7 +129,7 @@ class InputScreen extends StatelessWidget {
                           controller: _cholesterolController,
                           decoration: const InputDecoration(
                             border: InputBorder.none,
-                            hintText: 'Cholesterol'
+                            hintText: ' Cholesterol'
                           ),
                         ),
                       ),
@@ -149,12 +148,12 @@ class InputScreen extends StatelessWidget {
                           controller: _fastingBlueSugarController,
                           decoration: const InputDecoration(
                             border: InputBorder.none,
-                            hintText: 'Fasting Blue Sugar'
+                            hintText: ' Fasting Blue Sugar'
                           ),
                         ),
                       ),
                     ),
-                    Padding(
+                    /*Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 30),
                       child: Container(
                         margin: const EdgeInsets.only(bottom: 20),
@@ -164,16 +163,16 @@ class InputScreen extends StatelessWidget {
                           border: Border.all(color: Colors.black),
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        child: TextField(
+                        /*child: TextField(
                           controller: _restEcgController,
                           decoration: const InputDecoration(
                             border: InputBorder.none,
                             hintText: 'Rest ECG'
                           ),
-                        ),
+                        ),*/
                       ),
-                    ),
-                    Padding(
+                    ),*/
+                    /*Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 30),
                       child: Container(
                         margin: const EdgeInsets.only(bottom: 20),
@@ -183,15 +182,15 @@ class InputScreen extends StatelessWidget {
                           border: Border.all(color: Colors.black),
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        child: TextField(
+                        /*child: TextField(
                           controller: _maxHeartRateController,
                           decoration: const InputDecoration(
                             border: InputBorder.none,
                             hintText: 'Max Heart Rate'
                           ),
-                        ),
+                        ),*/
                       ),
-                    ),
+                    ),*/
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 30),
                       child: Container(
@@ -206,12 +205,12 @@ class InputScreen extends StatelessWidget {
                           controller: _exangController,
                           decoration: const InputDecoration(
                             border: InputBorder.none,
-                            hintText: 'Exang'
+                            hintText: ' Exang'
                           ),
                         ),
                       ),
                     ),
-                    Padding(
+                    /*Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 30),
                       child: Container(
                         margin: EdgeInsets.only(bottom: 20),
@@ -221,15 +220,15 @@ class InputScreen extends StatelessWidget {
                           border: Border.all(color: Colors.black),
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        child: TextField(
+                        /*child: TextField(
                           controller: _oldpeakController,
                           decoration: const InputDecoration(
                             border: InputBorder.none,
                             hintText: 'Oldpeak'
                           ),
-                        ),
+                        ),*/
                       ),
-                    ),
+                    ),*/
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 30),
                       child: Container(
@@ -244,7 +243,7 @@ class InputScreen extends StatelessWidget {
                           controller: _slopeController,
                           decoration: const InputDecoration(
                             border: InputBorder.none,
-                            hintText: 'Slope'
+                            hintText: ' Slope'
                           ),
                         ),
                       ),
@@ -263,7 +262,7 @@ class InputScreen extends StatelessWidget {
                           controller:_caController ,
                           decoration: const InputDecoration(
                             border: InputBorder.none,
-                            hintText: 'Ca'
+                            hintText: ' Ca'
                           ),
                         ),
                       ),

@@ -1,26 +1,30 @@
-import 'package:demo2project/screens/register_screen.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'package:flutter/material.dart';
-
+import 'package:projedonem/screens/register_screen.dart';
+import '../service/auth.dart';
 import 'home_screen.dart';
+
+
+
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
-
-  @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
-
 class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  AuthService _authService = AuthService();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 57, 76, 201),
       body: SingleChildScrollView(
+
         child: SafeArea(
           child: Center(
             child: Column(
@@ -37,21 +41,29 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(
                   height: 30,
                 ),
-      
+
                 // text(login to your account)
-      
-      
+
                 // email
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 35),
-                      child: Text('E-Mail',style: TextStyle(color: Colors.white,),),
+                      child: Text(
+                        'E-Mail',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
-                    SizedBox(height: 10,),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 25,),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 25,
+                      ),
                       child: Container(
                         height: 65,
                         decoration: BoxDecoration(
@@ -60,7 +72,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           borderRadius: BorderRadius.circular(18),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 20),
                           child: TextField(
                             decoration: InputDecoration(
                                 border: InputBorder.none, hintText: 'E-Mail'),
@@ -70,27 +83,38 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ],
                 ),
-      
+
                 SizedBox(
                   height: 60,
                 ),
-      
+
                 //password
-      
+
                 Column(
                   children: [
-                     Row(
-                       children: [
-                         Padding(
+                    Row(
+                      children: [
+                        Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 35),
-                          child: Text('Password',style: TextStyle(color: Colors.white,),),
+                          child: Text(
+                            'Password',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 140,
+                        ),
+                        Text(
+                          'Forgot Password',
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                      ],
                     ),
-                    SizedBox(width: 140,),
-                    Text('Forgot Password',style: TextStyle(color: Colors.grey),),
-      
-                       ],
-                     ),
-                    SizedBox(height: 10,),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 25),
                       child: Container(
@@ -101,7 +125,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           borderRadius: BorderRadius.circular(18),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 20),
                           child: TextField(
                             obscureText: true,
                             decoration: InputDecoration(
@@ -112,19 +137,29 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ],
                 ),
-      
+
                 SizedBox(
                   height: 80,
                 ),
-      
+
                 //Sign ın buttton
                 GestureDetector(
                   onTap: () {
-                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => HomeScreen()));
+                    _authService
+                        .signIn(
+                        _emailController.text, _passwordController.text)
+                        .then((value) {
+                      return Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => HomeScreen()));
+                    });
                   },
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10,),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 15,
+                      vertical: 10,
+                    ),
                     child: Container(
                       height: 55,
                       decoration: BoxDecoration(
@@ -145,13 +180,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
-      
+
                 SizedBox(
                   height: 10,
                 ),
-      
+
                 //Not a member   button(register now)
-      
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

@@ -1,6 +1,10 @@
-import 'package:demo2project/screens/blog_screen.dart';
-import 'package:demo2project/screens/input_screen.dart';
+import 'dart:js';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+import 'blog_screen.dart';
+import 'input_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -10,7 +14,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.report), label: "Report",),
+          BottomNavigationBarItem(icon: Icon(Icons.report), label: "Report"),
           BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: "Home"),
           BottomNavigationBarItem(
               icon: Icon(Icons.notification_important_sharp),
@@ -29,7 +33,7 @@ class HomeScreen extends StatelessWidget {
               buildB1(context),
               buildBanner(),
               buildText4(),
-              buildTest(),
+              buildTest(context),
               buildText5(context),
             ],
           ),
@@ -84,57 +88,66 @@ Widget buildTexts3() {
 Widget buildB1(BuildContext context) {
   return Padding(
     padding: EdgeInsets.only(top: 12.35),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        GestureDetector(
-          onTap: (){
-            Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => BlogScreen()));
-          },
-          child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 28, vertical: 18),
-            decoration:
-                BoxDecoration(shape: BoxShape.circle, color: Colors.blueAccent),
-            child: Icon(
-              Icons.person,
-              color: Colors.deepOrange,
-              size: 18,
+
+    child: GestureDetector(
+      onTap: () {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => BlogScreen()));
+      },
+      child:Container(
+        padding: EdgeInsets.only(left: 31, right: 25, top: 11, bottom: 30),
+        decoration: BoxDecoration(
+            color: Color(0xFFDCEDF9),
+
+            borderRadius: BorderRadius.circular(15)),
+
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children:[
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children:[
+                Image.asset('assets/doctoricon.png',
+                  width:30,
+                  height:30,
+                  color: Color(0XFF1C6BA4),),
+              ],
+
             ),
-          ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children:[ Icon(
+                Icons.medication,
+                color: Color(0XFF1C6BA4),
+                size: 30,
+              ),
+              ],),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+
+              children:[
+                const Icon(
+                  Icons.document_scanner_sharp,
+                  color: Color(0XFF1C6BA4),
+                  size: 30,
+                ),
+              ],  ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+
+              children:[ Image.asset('assets/virus.png',
+                  color:Color(0xFF1C6BA4),
+                  width:30,
+                  height:30),
+              ],
+            ),
+
+          ],
         ),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 18),
-          decoration:
-              const BoxDecoration(shape: BoxShape.circle, color: Colors.amber),
-          child: const Icon(
-            Icons.person,
-            color: Colors.orange,
-            size: 18,
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 18),
-          decoration: const BoxDecoration(
-              shape: BoxShape.circle, color: Colors.limeAccent),
-          child: const Icon(
-            Icons.person,
-            color: Colors.black,
-            size: 18,
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 18),
-          decoration: const BoxDecoration(
-              shape: BoxShape.circle, color: Colors.blueAccent),
-          child: const Icon(
-            Icons.person,
-            color: Colors.tealAccent,
-            size: 18,
-          ),
-        ),
-      ],
+      ),
     ),
+
+    /**/
   );
 }
 
@@ -145,7 +158,7 @@ Widget buildBanner() {
       width: double.infinity,
       padding: EdgeInsets.only(left: 24, right: 7, top: 25, bottom: 1),
       decoration: BoxDecoration(
-          color: Colors.cyanAccent, borderRadius: BorderRadius.circular(15)),
+          color: Color(0xFFDCEDF9), borderRadius: BorderRadius.circular(15)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -169,8 +182,8 @@ Widget buildBanner() {
               ),
             ],
           ),
-          Image.network(
-            "https://s3-alpha-sig.figma.com/img/947a/69b3/a1e5489eb7ff56f02bac71eec663a28f?Expires=1672617600&Signature=mhnwYULUgum~J6T~yoXic4vCOQf6g1lh~cZDmi6TdATmx7cNW-KBiAq2l7ZEY-fVA5x098XelJrAVLn5vmxxRfxdrLaf9W1FqopkW-Rk~DjjvzataiDcNIGxIxwAIcA~hlkbF4TjgUJiMLIxAcaj820QEht0qdq5F-2V3ymaMUwSeq~PxTnJ8DFz8wclAnqJgv51WYS2FauPUgKOfDlC7SYGd8s-ol9eez6fm12gxe0fkxBBGhXaFkiPVEd20CQmlCXwnHrPa8sWdQX6eIBb3zm1AwVa9YEu2K4zWMtWPo6WP5eRlT5NPh7P-Y2urS9jAVw4ISsunA14tId7-MH9VA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4",
+          Image.asset(
+            'assets/doctor.png',
             width: 120,
             height: 180,
           )
@@ -190,91 +203,269 @@ Widget buildText4() {
     ),
   );
 }
+@override
+Widget buildTest(BuildContext context) {
+  Size ScreenSize = MediaQuery.of(context).size;
+  return Container(
+    alignment: Alignment.center,
+    height:80,
+    child: Padding(
+      padding: EdgeInsets.all(8),
+      child:Expanded(
+        child:SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child:ConstrainedBox(
+            constraints: BoxConstraints(
+                maxHeight:200),
+            child:ListView(
+              shrinkWrap: true,
 
-Widget buildTest() {
-  return Padding(
-    padding: const EdgeInsets.only(top: 5),
-    child: Container(
-      width: double.infinity,
-      padding: EdgeInsets.only(left: 11, top: 11, bottom: 11),
-      decoration: BoxDecoration(
-          color: Colors.cyanAccent, borderRadius: BorderRadius.circular(15)),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              Text(
-                "13",
-                style: TextStyle(
-                    color: Colors.indigo,
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 4),
-              Text(
-                "Tue",
-                style: TextStyle(
-                    color: Colors.blueGrey,
-                    fontSize: 17,
-                    fontWeight: FontWeight.normal),
-              ),
-            ],
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "09.30",
-                style: TextStyle(
-                    color: Colors.indigo,
-                    fontSize: 14,
-                    fontWeight: FontWeight.normal),
-              ),
-              SizedBox(height: 4),
-              Text(
-                "Have Risk",
-                style: TextStyle(
-                    color: Colors.indigo,
-                    fontSize: 19,
-                    fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 3),
-              Text(
-                "%73 Lorem Ipsum",
-                style: TextStyle(
-                    color: Colors.indigo,
-                    fontSize: 15,
-                    fontWeight: FontWeight.normal),
-              ),
-            ],
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "...",
-                style: TextStyle(
-                    color: Colors.cyanAccent,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w100),
-              )
-            ],
-          ),
-        ],
-      ),
-    ),
-  );
+
+              children:[
+                Container(
+                  width: double.infinity,
+                  height:65,
+                  decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 245, 204, 138), borderRadius: BorderRadius.circular(15)),
+
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: const [
+                          Text(
+                            "13",
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 0, 0, 0),
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(height: 4),
+                          Text(
+                            "Tue",
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 0, 0, 0),
+                                fontSize: 17,
+                                fontWeight: FontWeight.normal),
+                          ),
+                        ],
+
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            "09.30",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 14,
+                                fontWeight: FontWeight.normal),
+                          ),
+                          SizedBox(height: 4),
+                          Text(
+                            "Have Risk",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 19,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(height: 3),
+                          Text(
+                            "%73 Lorem Ipsum",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 15,
+                                fontWeight: FontWeight.normal),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            "...",
+                            style: TextStyle(
+                                color: Color(0XFFD6F6FF),
+                                fontSize: 15,
+                                fontWeight: FontWeight.w100),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+
+                ),
+                SizedBox(width:10),
+                Container(
+                  width: double.infinity,
+                  height: 65,
+                  decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 3, 133, 246), borderRadius: BorderRadius.circular(15)),
+
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: const [
+                          Text(
+                            "13",
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 253, 252, 251),
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(height: 4),
+                          Text(
+                            "Tue",
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 255, 254, 254),
+                                fontSize: 17,
+                                fontWeight: FontWeight.normal),
+                          ),
+                        ],
+
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            "09.30",
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 255, 254, 254),
+                                fontSize: 14,
+                                fontWeight: FontWeight.normal),
+                          ),
+                          SizedBox(height: 4),
+                          Text(
+                            "Have Risk",
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 251, 251, 251),
+                                fontSize: 19,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(height: 3),
+                          Text(
+                            "%73 Lorem Ipsum",
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 247, 245, 245),
+                                fontSize: 15,
+                                fontWeight: FontWeight.normal),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            "...",
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 249, 247, 247),
+                                fontSize: 15,
+                                fontWeight: FontWeight.w100),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+
+                ),
+                SizedBox(width:10),
+                Container(
+                  width: double.infinity,
+                  height: 65,
+
+                  decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 95, 255, 151), borderRadius: BorderRadius.circular(15)),
+
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: const [
+                          Text(
+                            "13",
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 255, 254, 253),
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(height: 4),
+                          Text(
+                            "Tue",
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 255, 254, 253),
+                                fontSize: 17,
+                                fontWeight: FontWeight.normal),
+                          ),
+                        ],
+
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            "09.30",
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 254, 253, 253),
+                                fontSize: 14,
+                                fontWeight: FontWeight.normal),
+                          ),
+                          SizedBox(height: 4),
+                          Text(
+                            "Have Risk",
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 255, 255, 255),
+                                fontSize: 19,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(height: 3),
+                          Text(
+                            "%73 Lorem Ipsum",
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 255, 255, 255),
+                                fontSize: 15,
+                                fontWeight: FontWeight.normal),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            "...",
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 251, 251, 251),
+                                fontSize: 15,
+                                fontWeight: FontWeight.w100),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+
+                ),
+
+
+
+              ],
+            ),),),),
+    ), );
 }
 
+@override
 Widget buildText5(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.only(top: 23.12),
     child: InkWell(
       onTap: (){
         Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => InputScreen()));
+            MaterialPageRoute(builder: (context) => InputScreen()));
       },
       child: Container(
         width: double.infinity,

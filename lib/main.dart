@@ -1,12 +1,18 @@
-import 'package:demo2project/screens/logins_screen.dart';
-import 'package:demo2project/screens/register_screen.dart';
-
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:projedonem/screens/logins_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 
-void main() {
-  runApp(const MyApp());
-}
+
+
+  void main() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp();
+    runApp(const MyApp());
+  }
+
+
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -19,8 +25,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: LoginScreen(),
+
       debugShowCheckedModeBanner: false,
     );
   }
 }
+
 

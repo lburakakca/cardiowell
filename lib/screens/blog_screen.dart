@@ -144,14 +144,16 @@ class BlogScreen extends StatelessWidget {
 
 List<Map<String, String>> _blogList = [
   {
-    "title": "Best foods for healt!",
-    "description":
-        "You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu ook this menu.You should look this menuook this menu.You should look this."
+    "title": "Harvard Health Blog: Heart Health",
+    "description": "Harvard Heart Health Blog is run by Harvard Health Publications, the publishing division of the prestigious Harvard Medical School of Harvard University in Cambridge, MA.Harvard Health Publications collate health and wellness information to educate through newsletters, books, video, reports, mobile apps, web-based interactive tools, and their websites.The Heart Health blog covers a broad range of heart-related topics, including how to stick to a low-salt diet when eating out, over-the-counter pain relievers and your heart, how dietary improvements could help you to live longer, and why you should keep tabs on your alcohol intake.  "
+
+
+
   },
   {
-    "title": "Best foods for healt!",
+    "title": "Support Network Blog",
     "description":
-        "You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu.You should look this menu ook this menu.You should look this menuook this menu.You should look this."
+      "The Support NetworkTrusted Source is the patient support website of the American Heart AssociationTrusted Source. The American Heart Association are dedicated to fighting heart disease and stroke. They fund innovative research, provide tools and information to help save and improve lives, and fight for stronger public health policies.The Support Network connects people with similar conditions on their forums and provides real stories from real people, offers support videos, and gives answers from health professionals.Recent blog postsTrusted Source on the Support Network include Catherine’s accountTrusted Source of her father’s stroke survival, Lori’s adjustmentTrusted Source to life after stroke, Emily’s interviewTrusted Source with a heart disease researcher, and Melanie’s cardiopulmonary resuscitation storyTrusted Source."
   },
   {
     "title": "Best foods for healt!",

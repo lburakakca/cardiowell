@@ -1,18 +1,61 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+import 'package:firebase_core/firebase_core.dart';
+import 'package:projedonem/screens/logins_screen.dart';
+import '../service/auth.dart';
 import 'home_screen.dart';
 
-class RegisterScreen extends StatelessWidget {
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({super.key});
+
+  @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
+  String? errorMessage = '';
+  bool isLogin = true;
+  final TextEditingController _controllerUserName = TextEditingController();
+  final TextEditingController _controllerEmail = TextEditingController();
+  final TextEditingController _controllerPassword = TextEditingController();
+  final TextEditingController _controllerPasswordAgain = TextEditingController();
+  AuthService _authService = AuthService();
+
+//surname delete //pass again
+  /*Future<void> signInWithEmailAndPassword() async {
+    try {
+      await Auth().signInWithEmailAndPassword(
+        email: _controllerEmail.text,
+        password: _controllerPassword.text,
+      );
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        errorMessage = e.message;
+      });
+    }
+  }*/
+
+ /* Future<void> createUserWithEmailAndPassword() async {
+    try {
+      await Auth().createUserWithEmailAndPassword(
+        email: _controllerEmail.text,
+        password: _controllerPassword.text,
+      );
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        errorMessage = e.message;
+      });
+    }
+  }*/
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 57, 76, 201),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Column(
             children: [
-          
               Padding(
                 padding: const EdgeInsets.all(20),
                 child: Image.asset(
@@ -22,7 +65,9 @@ class RegisterScreen extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30,),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 30,
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -33,7 +78,7 @@ class RegisterScreen extends StatelessWidget {
                     SizedBox(
                       height: 5,
                     ),
-                    LoginContainer(),
+                    LoginContainer('User name', _controllerUserName),
                     SizedBox(
                       height: 20,
                     ),
@@ -44,7 +89,7 @@ class RegisterScreen extends StatelessWidget {
                     SizedBox(
                       height: 5,
                     ),
-                    LoginContainer(),
+                    LoginContainer('Email', _controllerEmail),
                     SizedBox(
                       height: 20,
                     ),
@@ -55,47 +100,21 @@ class RegisterScreen extends StatelessWidget {
                     SizedBox(
                       height: 5,
                     ),
-                    LoginContainer(),
+                    LoginContainer('Password', _controllerPassword),
                     SizedBox(
                       height: 20,
-                    ),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Password',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        SizedBox(
-                          width: 140,
-                        ),
-                        Text(
-                          'Forgot Pasword',
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                      ],
                     ),
                     SizedBox(
                       height: 5,
                     ),
-                    Container(
-                      height: 60,
-                      alignment: Alignment.centerLeft,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.white,
-                      ),
-                      child: TextField(
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          contentPadding: EdgeInsets.symmetric(
-                            vertical: 20,
-                            horizontal: 40,
-                          ),
-                        ),
-                      ),
+                    Text(
+                      'Password',
+                      style: TextStyle(color: Colors.white),
                     ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    LoginContainer('Password again', _controllerPasswordAgain),
                     SizedBox(
                       height: 30,
                     ),
@@ -103,10 +122,19 @@ class RegisterScreen extends StatelessWidget {
                       width: double.infinity,
                       child: ElevatedButton(
                         onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => HomeScreen()));
+                          if (isLogin) {
+                            _authService
+                                .createPerson(
+                                _controllerUserName.text,
+                                _controllerEmail.text,
+                                _controllerPassword.text)
+                                .then((value) {
+                              return Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => LoginScreen()));
+                            });
+                          }
                         },
                         child: Text(
                           'Register',
@@ -134,28 +162,32 @@ class RegisterScreen extends StatelessWidget {
       ),
     );
   }
+
+  Widget _errorMessage() {
+    return Text(errorMessage == '' ? '' : 'Humm ? $errorMessage');
+  }
 }
 
-class LoginContainer extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return Container(
-      height: 60,
-      alignment: Alignment.centerLeft,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: Colors.white,
-      ),
-      child: TextField(
-        decoration: InputDecoration(
-          border: InputBorder.none,
-          contentPadding: EdgeInsets.symmetric(
-            vertical: 20,
-            horizontal: 40,
-          ),
+Widget LoginContainer(
+    String title,
+    TextEditingController controller,
+    ) {
+  return Container(
+    height: 60,
+    alignment: Alignment.centerLeft,
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(10),
+      color: Colors.white,
+    ),
+    child: TextField(
+      controller: controller,
+      decoration: InputDecoration(
+        border: InputBorder.none,
+        contentPadding: EdgeInsets.symmetric(
+          vertical: 20,
+          horizontal: 40,
         ),
       ),
-    );
-  }
+    ),
+  );
 }

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "812180134962",
+    "project_id": "fall-semester-project-1234",
+    "storage_bucket": "fall-semester-project-1234.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:812180134962:android:d0ec129d45cf569460b02b",
+        "android_client_info": {
+          "package_name": "com.example.flutter_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "812180134962-k6si79fduuetaifnidripsrquqje26rh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWxpsjOE4JFYLWwNZZjHlXk-SAO5UQJro"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "812180134962-k6si79fduuetaifnidripsrquqje26rh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
