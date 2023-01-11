@@ -153,44 +153,7 @@ class InputScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    /*Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 30),
-                      child: Container(
-                        margin: const EdgeInsets.only(bottom: 20),
-                        height: 65,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          border: Border.all(color: Colors.black),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        /*child: TextField(
-                          controller: _restEcgController,
-                          decoration: const InputDecoration(
-                            border: InputBorder.none,
-                            hintText: 'Rest ECG'
-                          ),
-                        ),*/
-                      ),
-                    ),*/
-                    /*Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 30),
-                      child: Container(
-                        margin: const EdgeInsets.only(bottom: 20),
-                        height: 65,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          border: Border.all(color: Colors.black),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        /*child: TextField(
-                          controller: _maxHeartRateController,
-                          decoration: const InputDecoration(
-                            border: InputBorder.none,
-                            hintText: 'Max Heart Rate'
-                          ),
-                        ),*/
-                      ),
-                    ),*/
+
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 30),
                       child: Container(
@@ -210,25 +173,7 @@ class InputScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    /*Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 30),
-                      child: Container(
-                        margin: EdgeInsets.only(bottom: 20),
-                        height: 65,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          border: Border.all(color: Colors.black),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        /*child: TextField(
-                          controller: _oldpeakController,
-                          decoration: const InputDecoration(
-                            border: InputBorder.none,
-                            hintText: 'Oldpeak'
-                          ),
-                        ),*/
-                      ),
-                    ),*/
+                 
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 30),
                       child: Container(
