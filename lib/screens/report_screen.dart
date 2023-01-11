@@ -1,4 +1,79 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
+String api_key = 'JBJ0oJZjAAyYeQ1uA8Cgb8IukRF2MBB2lhlHOYZxkIvxly9A+Zu89f+5MZZxnTTwt79khJJaU+29+AMCNlwLrQ==';
+Uri url = Uri.parse('https://ussouthcentral.services.azureml.net/workspaces/c9014223c85d4766ac510d469977b6e0/services/8f426f385b3b436f97d22c4c94467108/execute?api-version=2.0&details=true');
+Future<void> makePostRequest(String age, String sex, String cp, String trestbps, String chol, String fbs, String restecg, String thalach, String exang, String oldpeak, String slope,  String ca, String thal,String target) async {
+  final headers = {
+            'Content-Type':'application/json', 
+            'Authorization':('Bearer '+ api_key),
+            "Accept": "application/json",
+        };
+  final json = jsonEncode({
+  "Inputs": {
+    "input1": {
+      "ColumnNames": [
+        "age",
+        "sex",
+        "cp",
+        "trestbps",
+        "chol",
+        "fbs",
+        "restecg",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal",
+        "target"
+      ],
+      "Values": [
+        [
+          age,
+          sex,
+          cp,
+          trestbps,
+          chol,
+          chol,
+          fbs,
+          restecg,
+          thalach,
+          exang,
+          oldpeak,
+          slope,
+          ca,
+          thal
+        ],
+        [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      ]
+    }
+  },
+  "GlobalParameters": {}
+});
+  final response = await http.post(url, headers: headers, body: json);
+  print('Status code: ${response.statusCode}');
+  print('Body: ${response.body}');
+}
+
 
 class ReportScreen extends StatelessWidget {
   const ReportScreen({super.key});
@@ -47,7 +122,7 @@ class ReportScreen extends StatelessWidget {
                           height: 15,
                         ),
                         Text(
-                          "65% ",
+                          "%65",
                           style: TextStyle(
                               fontWeight: FontWeight.w400, fontSize: 50),
                         ),
