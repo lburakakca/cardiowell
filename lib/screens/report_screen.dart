@@ -3,8 +3,6 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import '../Report.dart';
-
-const response = "";
 String api_key =
     'JBJ0oJZjAAyYeQ1uA8Cgb8IukRF2MBB2lhlHOYZxkIvxly9A+Zu89f+5MZZxnTTwt79khJJaU+29+AMCNlwLrQ==';
 Uri url = Uri.parse(
@@ -12,8 +10,8 @@ Uri url = Uri.parse(
 
 
 
-
-Future<List<Report>> makePostRequest(
+late Report reportResult;
+Future<Report> makePostRequest(
     Report report
   /*
     String age,
@@ -92,21 +90,10 @@ Future<List<Report>> makePostRequest(
     "GlobalParameters": {}
   });
   final response = await http.post(url, headers: headers, body: json);
-
- 
-     
-      List<dynamic> body = jsonDecode(response.body);
-
-      List<Report> reports = body
-        .map(
-          (dynamic item) => Report.fromJson(item),
-        )
-        .toList();
-
-      return reports;
-   
-  print('Status code: ${response.statusCode}');
-  print('Body: ${response.body}');
+      print(response.body);
+      Report body = jsonDecode(response.body);
+      reportResult = body;
+      return body;
   }
 
 class ReportScreen extends StatelessWidget {
@@ -124,11 +111,16 @@ class ReportScreen extends StatelessWidget {
   String ca;
   //ReportScreen(this.response);*/
   Report report ; 
-  ReportScreen({super.key, required this.report});
+  ReportScreen({super.key, required this.report}) {
+    // TODO: implement ReportScreen
+    reportResult = makePostRequest(report) as Report;
+    
+  }
  
   
   @override
   Widget build(BuildContext context) {
+    makePostRequest(report);
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -171,9 +163,10 @@ class ReportScreen extends StatelessWidget {
                           height: 15,
                         ),
                         Text(
-                           makePostRequest(report).toString(),
+                          
+                           reportResult.target,
                           style: TextStyle(
-                              fontWeight: FontWeight.w400, fontSize: 50),
+                              fontWeight: FontWeight.w400, fontSize: 15),
                         ),
                       ],
                     ),
