@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:projedonem/screens/report_screen.dart';
+import '../Report.dart';
 import 'home_screen.dart';
+
+
 
 class InputScreen extends StatelessWidget {
   final  _ageController = TextEditingController();
@@ -10,7 +13,7 @@ class InputScreen extends StatelessWidget {
   final  _cholesterolController = TextEditingController();
   final  _fastingBlueSugarController = TextEditingController();
   //final  _restEcgController = TextEditingController();
-  //final  _maxHeartRateController = TextEditingController();
+  final  _maxHeartRateController = TextEditingController();
   final  _exangController = TextEditingController();
   //final  _oldpeakController = TextEditingController();
   final  _slopeController = TextEditingController();
@@ -134,6 +137,25 @@ class InputScreen extends StatelessWidget {
                         ),
                       ),
                     ),
+                      Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 30),
+                      child: Container(
+                        margin: const EdgeInsets.only(bottom: 20),
+                        height: 65,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(color: Colors.black),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: TextField(
+                          controller: _maxHeartRateController,
+                          decoration: const InputDecoration(
+                            border: InputBorder.none,
+                            hintText: 'Max Hearth Rate'
+                          ),
+                        ),
+                      ),
+                    ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 30),
                       child: Container(
@@ -224,13 +246,23 @@ class InputScreen extends StatelessWidget {
                       left: 33,
                     ),
                     child: InkWell(
-                      onTap: () {
-                          Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => ReportScreen()));
+                      onTap: () async {
+   Report report = Report(age: _ageController.text,
+   sex:_sexController.text ,
+   cp:_cerebralPalsyController.text ,
+   trestbps: _bloodPressureController.text,chol: _cholesterolController.text,fbs: _fastingBlueSugarController.text,restecg: "1.5",thalach: _maxHeartRateController.text,exang: _exangController.text ,oldpeak: "2",slope:_slopeController.text ,ca:_caController.text, thal: "0", target: "0");
+
+   Navigator.push(
+                  context, 
+                  MaterialPageRoute(builder: (context) => ReportScreen(report: report)),
+                  );
                       },
                       child: Container(
-                        child: Center(
-                          child: Text(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(18),
+                            shape: BoxShape.rectangle,
+                            color: Color(0xffD6F6FF)),
+                        child: const Text(
                             "Show Result",
                             style: TextStyle(
                               fontWeight: FontWeight.w800,
@@ -238,11 +270,7 @@ class InputScreen extends StatelessWidget {
                               color: Color(0xff009DC7),
                             ),
                           ),
-                        ),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(18),
-                            shape: BoxShape.rectangle,
-                            color: Color(0xffD6F6FF)),
+                            
                       ),
                     ),
                   ),
