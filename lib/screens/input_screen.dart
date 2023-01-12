@@ -240,7 +240,7 @@ class InputScreen extends StatelessWidget {
                       onPressed: ()  async {
                        
                   
-                    
+                     final ReportResult result = await makePostRequest(_ageController.text, _sexController.text, _cerebralPalsyController.text, _bloodPressureController.text, _cholesterolController.text, _fastingBlueSugarController.text, "", _maxHeartRateController.text, _exangController.text, "", _slopeController.text, _caController.text, "0", "0") ;
                         showModalBottomSheet<void>(
                           
                             context: context,
@@ -296,7 +296,7 @@ class InputScreen extends StatelessWidget {
                                                     height: 15,
                                                   ),
                                                   Text(
-                                                    "Burağa götten gireyim",
+                                                    result.ScoredProbabilitiesFor1.toString(),
                                                     style: TextStyle(
                                                         fontWeight:
                                                             FontWeight.w400,
@@ -319,7 +319,7 @@ class InputScreen extends StatelessWidget {
                                 ),
                               );
                             });
-                             final ReportResult result = await makePostRequest(_ageController.text, _sexController.text, _cerebralPalsyController.text, _bloodPressureController.text, _cholesterolController.text, _fastingBlueSugarController.text, "", _maxHeartRateController.text, _exangController.text, "", _slopeController.text, _caController.text, "0", "0") ;
+                            
                              print(result.ScoredProbabilitiesFor1);
                       },
                       child: Text("Show Result"),
@@ -461,7 +461,7 @@ Future<ReportResult> makePostRequest(String age, String sex, String cp, String t
   print("Tam yaşında"+age);
   print('Status code: ${response.statusCode}');
   print('Body: ${response.body}');
-  final jsonResponse = jsonDecode(response.body).cast<Map<String, dynamic>>();
+  //final jsonResponse = jsonDecode(response.body).cast<Map<String, dynamic>>();
   List cmList = (jsonDecode(response.body) as List).map((data) => new ReportResult.fromJson(data)).toList();
   return cmList.first;
 
