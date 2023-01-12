@@ -18,8 +18,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _controllerUserName = TextEditingController();
   final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
-  final TextEditingController _controllerPasswordAgain =
-      TextEditingController();
+  final TextEditingController _controllerPasswordAgain = TextEditingController();
   AuthService _authService = AuthService();
 
 //surname delete //pass again
@@ -123,18 +122,27 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       width: double.infinity,
                       child: ElevatedButton(
                         onPressed: () {
-                          if (isLogin) {
-                            _authService
+                          if (_controllerPassword.text == _controllerPasswordAgain.text) {
+                            if(isLogin ) {
+                                _authService
                                 .createPerson(
                                     _controllerUserName.text,
                                     _controllerEmail.text,
                                     _controllerPassword.text)
                                 .then((value) {
-                              return Navigator.push(
+                                  if(value!=null) 
+                                  { 
+                                  return Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => LoginScreen()));
+                                      builder: (context) => const LoginScreen()));}
+                             
                             });
+                            }
+                            else{
+                              print("şifreler aynı değil");
+                            }
+                            
                           }
                         },
                         child: Text(
