@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:projedonem/ReportResult.dart';
 
 import '../Report.dart';
 String api_key =
@@ -9,95 +10,11 @@ Uri url = Uri.parse(
     'https://ussouthcentral.services.azureml.net/workspaces/c9014223c85d4766ac510d469977b6e0/services/8f426f385b3b436f97d22c4c94467108/execute?api-version=2.0&details=true');
 
 
+late ReportResult reportResult;
 
-late Report reportResult;
-Future<Report> makePostRequest(
-    Report report
-  /*
-    String age,
-    String sex,
-    String cp,
-    String trestbps,
-    String chol,
-    String fbs,
-    String restecg,
-    String thalach,
-    String exang,
-    String oldpeak,
-    String slope,
-    String ca,
-    String thal,
-    String target*/) async {
-  final headers = {
-    'Content-Type': 'application/json',
-    'Authorization': ('Bearer ' + api_key),
-    "Accept": "application/json",
-  };
-  final json = jsonEncode({
-    "Inputs": {
-      "input1": {
-        "ColumnNames": [
-          "age",
-          "sex",
-          "cp",
-          "trestbps",
-          "chol",
-          "fbs",
-          "restecg",
-          "thalach",
-          "exang",
-          "oldpeak",
-          "slope",
-          "ca",
-          "thal",
-          "target"
-        ],
-        "Values": [
-          [
-            report.age,
-            report.sex,
-            report.cp,
-            report.trestbps,
-            report.chol,
-            report.fbs,
-            report.restecg,
-            report.thalach,
-            report.exang,
-            report.oldpeak,
-            report.slope,
-            report.ca,
-            report.thal,
-            report.target
-            /*age,
-            sex,
-            cp,
-            trestbps,
-            chol,
-            fbs,
-            restecg,
-            thalach,
-            exang,
-            oldpeak,
-            slope,
-            ca,
-            thal,
-            target*/
-          ],
-          ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"]
-        ]
-      }
-    },
-    "GlobalParameters": {}
-  });
-  final response = await http.post(url, headers: headers, body: json);
-      print(response.body);
-      Report body = jsonDecode(response.body);
-      reportResult = body;
-      return body;
-  }
 
 class ReportScreen extends StatelessWidget {
- /* String age;
+  String age;
   String sex;
   String cp;
   String trestbps;
@@ -109,26 +26,43 @@ class ReportScreen extends StatelessWidget {
   String oldpeak;
   String slope;
   String ca;
-  //ReportScreen(this.response);*/
-  Report report ; 
-  ReportScreen({super.key, required this.report}) {
-    // TODO: implement ReportScreen
-    reportResult = makePostRequest(report) as Report;
-    
+  //ReportScreen(this.response);
+  ReportScreen(this.age,this.sex,this.cp,this.trestbps,this.chol,this.fbs,this.restecg,this.thalach,this.exang,this.oldpeak,this.slope,this.ca) {
+    age = age;
+    sex = sex;
+    cp = cp;
+    trestbps = trestbps;
+    chol = chol;
+    fbs = fbs;
+    restecg = restecg;
+    thalach = thalach;
+    exang = exang;
+    oldpeak = oldpeak;
+    slope = slope;
+    ca = ca;
+   // makePostRequest( age,  sex,  cp,  trestbps,  chol,  fbs,  restecg,  thalach,  exang,  oldpeak,  slope,   ca,  "0", "1");
   }
+    // TODO: implement ReportScreen
+    //ReportResult reportResult = makePostRequest(report.age,report.sex,report.cp,report.trestbps,report.chol,report.fbs,report.restecg,report.thalach,report.exang,report.oldpeak,report.slope,report.ca,report.thal,report.target) as ReportResult;
+    //  Report report ; 
+  /*ReportScreen({super.key, required this.report}) {
+    makePostRequest(report.age, report.sex, report.cp, report.trestbps, report.chol, report.fbs, report.restecg, report.thalach, report.exang, report.oldpeak, report.slope, report.ca, report.thal, report.target);
+  }*/
  
   
   @override
   Widget build(BuildContext context) {
-    makePostRequest(report);
+    //makePostRequest("0","1","1","1","1","1","1","1","1","1","1","1","0","0");
+   makePostRequest(age.toString(),sex.toString(),cp.toString(),trestbps.toString(),chol.toString(),fbs.toString(),restecg.toString(),thalach.toString(),exang.toString(),oldpeak.toString(),slope.toString(),
+   ca.toString(),"0","0");
     return Scaffold(
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // text ---> Report
-            Padding(
-              padding: const EdgeInsets.only(left: 28, top: 58),
+            const Padding(
+              padding: EdgeInsets.only(left: 28, top: 58),
               child: Text(
                 "Report",
                 style: TextStyle(fontSize: 27, fontWeight: FontWeight.w700),
@@ -137,7 +71,7 @@ class ReportScreen extends StatelessWidget {
 
             // Health Disease Risk container
             // container--->row----column
-            SizedBox(
+            const SizedBox(
               height: 46,
             ),
             Padding(
@@ -154,7 +88,7 @@ class ReportScreen extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 22, top: 29),
                     child: Column(
                       children: [
-                        Text(
+                        const Text(
                           "Heart Disease Risk",
                           style: TextStyle(
                               fontWeight: FontWeight.w400, fontSize: 16),
@@ -163,8 +97,8 @@ class ReportScreen extends StatelessWidget {
                           height: 15,
                         ),
                         Text(
-                          
-                           reportResult.target,
+                        reportResult.ScoredProbabilitiesFor1.toString(),
+                        //   reportResult.ScoredProbabilitiesFor1.toString(),
                           style: TextStyle(
                               fontWeight: FontWeight.w400, fontSize: 15),
                         ),
@@ -286,3 +220,73 @@ class ReportScreen extends StatelessWidget {
 }
 
 
+
+Future<void> makePostRequest(String age, String sex, String cp, String trestbps, String chol, String fbs, String restecg, String thalach, String exang, String oldpeak, String slope,  String ca, String thal,String target) async {
+  final headers = {
+            'Content-Type':'application/json', 
+            'Authorization':('Bearer '+ api_key),
+            "Accept": "application/json",
+        };
+  final json = jsonEncode({
+  "Inputs": {
+    "input1": {
+      "ColumnNames": [
+        "age",
+        "sex",
+        "cp",
+        "trestbps",
+        "chol",
+        "fbs",
+        "restecg",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal",
+        "target"
+      ],
+      "Values": [
+        [
+          age,
+          sex,
+          cp,
+          trestbps,
+          chol,
+          chol,
+          fbs,
+          restecg,
+          thalach,
+          exang,
+          oldpeak,
+          slope,
+          ca,
+          thal
+        ],
+        [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      ]
+    }
+  },
+  "GlobalParameters": {}
+});
+  final response = await http.post(url, headers: headers, body: json);
+  print("Tam yaşında"+age);
+  print('Status code: ${response.statusCode}');
+  print('Body: ${response.body}');
+ // reportResult = jsonDecode(response.body);
+}
