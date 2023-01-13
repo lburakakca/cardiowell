@@ -13,6 +13,7 @@ class ReportScreen extends StatefulWidget {
 }
 
 class _ReportScreenState extends State<ReportScreen> {
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,10 +59,10 @@ class _ReportScreenState extends State<ReportScreen> {
                         ),
                         Text(
                           
-                          widget.probability.toString(),
+                          "${(double.parse(widget.probability))*100}%",
                 
                           style: TextStyle(
-                              fontWeight: FontWeight.w400, fontSize: 15),
+                              fontWeight: FontWeight.w400, fontSize: 25),
                         ),
                       ],
                     ),
