@@ -1,22 +1,29 @@
 import 'package:flutter/material.dart';
-
+import 'dart:math';
 
 class ReportScreen extends StatefulWidget {
   String probability;
   //ReportScreen(this.response);
   ReportScreen(this.probability);
- 
-
 
   @override
   State<ReportScreen> createState() => _ReportScreenState();
 }
 
 class _ReportScreenState extends State<ReportScreen> {
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+        //Our navigation bar
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.report), label: "Report"),
+          BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: "Home"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.notification_important_sharp),
+              label: "Notification"),
+        ],
+      ),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,30 +51,48 @@ class _ReportScreenState extends State<ReportScreen> {
                   color: Color(0xffDCEDF9),
                   borderRadius: BorderRadius.circular(24),
                 ),
-                child: Row(children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 22, top: 29),
-                    child: Column(
-                      children: [
-                        const Text(
-                          "Heart Disease Risk",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w400, fontSize: 16),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20.0, top: 27),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            const Text(
+                              "Heart Disease Risk",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w400, fontSize: 16),
+                            ),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            Text(
+                              "${(double.parse(widget.probability)) * 100}%,",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w400, fontSize: 60),
+                            ),
+                          ],
                         ),
-                        const SizedBox(
-                          height: 15,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: 45.0, top: 35, bottom: 30),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              'assets/report.png',
+                              width: 90,
+                              height: 110,
+                              color: Color.fromARGB(255, 2, 145, 247),
+                            ),
+                          ],
                         ),
-                        Text(
-                          
-                          "${(double.parse(widget.probability))*100}%",
-                
-                          style: TextStyle(
-                              fontWeight: FontWeight.w400, fontSize: 25),
-                        ),
-                      ],
-                    ),
-                  )
-                ]),
+                      ),
+                    ]),
               ),
             ),
             const SizedBox(
@@ -88,47 +113,51 @@ class _ReportScreenState extends State<ReportScreen> {
                       borderRadius: BorderRadius.circular(24),
                     ),
                     child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: 24, top: 24, right: 19),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                               const  Icon(
-                                  Icons.water_drop_outlined,
-                                  color: Color(0xff9D4C6C),
-                                ),
-                                Icon(
-                                  Icons.water_drop_outlined,
-                                  color: Color(0xff9D4C6C),
-                                ),
-                              ],
-                            ),
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              left: 24, top: 24, right: 19),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Icon(
+                                Icons.bloodtype,
+                                color: Color(0xff9D4C6C),
+                                size: 32,
+                              ),
+                              Text(
+                                "...",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 16),
+                              ),
+                            ],
                           ),
-                          const Padding(
-                            padding: const EdgeInsets.only(left: 23, top: 17),
-                            child: Text(
-                              "Blood Group",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w400, fontSize: 14),
-                            ),
+                        ),
+                        const Padding(
+                          padding: const EdgeInsets.only(left: 23, top: 17),
+                          child: Text(
+                            "Blood Group",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w400, fontSize: 14),
                           ),
-                         const  SizedBox(
-                            height: 4,
+                        ),
+                        const SizedBox(
+                          height: 4,
+                        ),
+                        const Padding(
+                          padding: const EdgeInsets.only(left: 23),
+                          child: Text(
+                            "A+",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w700, fontSize: 28),
                           ),
-                        const   Padding(
-                            padding: const EdgeInsets.only(left: 23),
-                            child: Text(
-                              "A+",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w700, fontSize: 28),
-                            ),
-                          ),
-                        ]),
+                        ),
+                      ],
+                    ),
                   ),
-                 const  SizedBox(
+                  const SizedBox(
                     width: 12,
                   ),
                   Container(
@@ -138,41 +167,50 @@ class _ReportScreenState extends State<ReportScreen> {
                       color: Color(0xffFAF0DB),
                       borderRadius: BorderRadius.circular(24),
                     ),
-                    child: Column(children: [
-                      Padding(
-                        padding:
-                            const EdgeInsets.only(left: 24, top: 24, right: 19),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              child: const Icon(
-                                Icons.water_drop_outlined,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              left: 24, top: 24, right: 19),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Icon(
+                                Icons.accessibility,
+                                size: 32,
                                 color: Color(0xffE09F1F),
                               ),
-                            ),
-                            Container(
-                              child: const Icon(
-                                Icons.water_drop_outlined,
-                                color: Color(0xffE09F1F),
+                              Text(
+                                "...",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 16),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                      const Padding(
-                        padding: const EdgeInsets.only(left: 23),
-                        child: Text("Weight"),
-                      ),
-                     const  Padding(
-                        padding: const EdgeInsets.only(left: 23),
-                        child: Text(
-                          "80 Kg",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w700, fontSize: 28),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 23, top: 17),
+                          child: Text(
+                            "Weight",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w400, fontSize: 14),
+                          ),
                         ),
-                      ),
-                    ]),
+                        SizedBox(
+                          height: 4,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 23),
+                          child: Text(
+                            "80 Kg",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 28),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -183,6 +221,3 @@ class _ReportScreenState extends State<ReportScreen> {
     );
   }
 }
-
-
-

@@ -164,6 +164,7 @@ class _InputScreenState extends State<InputScreen> {
                       "0",
                       "0");
                   String probability = result.scoredProbabilitiesForClass1;
+                  // ignore: use_build_context_synchronously
                   Navigator.push(
                       context,
                       MaterialPageRoute(
