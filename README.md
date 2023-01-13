@@ -24,8 +24,9 @@ CardioWell
 
 ### Explanation
 
-| Data                                                                                                       |
+| Package                                                                                                       | Stable                                                                                                                                                                      | Canary                                                                                                                                                                         | Description                                                                             |
 | ------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------- |
+| [`@energyweb/origin-device-registry-api`](/packages/devices/origin-device-registry-api)                       | [![npm](https://img.shields.io/npm/v/@energyweb/origin-device-registry-api.svg)](https://www.npmjs.com/package/@energyweb/origin-device-registry-api)                       | [![npm](https://img.shields.io/npm/v/@energyweb/origin-device-registry-api/canary)](https://www.npmjs.com/package/@energyweb/origin-device-registry-api)                       | Generic implementation of API working with Origin device registry                       ||
 |           `age`          | The person's age in years |
 |           `sex`          | The person's sex (1 = male, 0 = female) |
 |           `cp`          | The chest pain experienced (Value 1: typical angina, Value 2: atypical angina, Value 3: non-anginal pain, Value 4: asymptomatic) |
