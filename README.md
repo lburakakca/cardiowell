@@ -10,7 +10,7 @@ CardioWell
 **CardioWell** is a mobile application in the field of health that detect your risk of heart disease as a percantage after take some data it will receive from you and informs you.   
 
 
-:construction: Documentation available at [https://energy-web-foundation-origin.readthedocs-hosted.com/en/latest/](https://energy-web-foundation-origin.readthedocs-hosted.com/en/latest/) :construction:
+
 
 ## Table of Contents
 
