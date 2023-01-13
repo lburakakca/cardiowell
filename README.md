@@ -16,7 +16,7 @@ CardioWell
 
 -   [Table of Contents](#table-of-contents)
 -   [Explanation of Inputs](#contents)
--   [How to Use?](#how-to-use?)
+-   [How to Use](#how-to-use)
 
 
 
@@ -44,6 +44,6 @@ CardioWell
 
 
 
-### How to Use 
+## How to Use 
 
 After registering to the application from the Registration Screen, you must go to the Login screen. After logging into the application, you will be redirected to the Home Page. To measure your heart disease risk, you will reach the data entry screen after pressing the `Detect your Risk!`  button. After entering the desired data on this screen, you will be directed to the result screen and learn your risk of heart disease.
