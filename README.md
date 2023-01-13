@@ -15,12 +15,12 @@ CardioWell
 ## Table of Contents
 
 -   [Table of Contents](#table-of-contents)
--   [Explanation of Inputs](#packages)
--   [How to Use?](#preparation)
+-   [Explanation of Inputs](#contents)
+-   [How to Use?](#how-to-use?)
 
 
 
-## Packages
+## Contents
 
 ### Explanation
 
