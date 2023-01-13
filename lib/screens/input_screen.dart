@@ -1,46 +1,46 @@
-
 import 'dart:convert';
-
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:projedonem/screens/report_screen.dart';
 
-import 'home_screen.dart';
-import 'package:http/http.dart' as http;
-import 'package:projedonem/ReportResult.dart';
+import '../Results.dart';
 
-import '../Report.dart';
 String api_key =
     'JBJ0oJZjAAyYeQ1uA8Cgb8IukRF2MBB2lhlHOYZxkIvxly9A+Zu89f+5MZZxnTTwt79khJJaU+29+AMCNlwLrQ==';
 Uri url = Uri.parse(
-    'https://ussouthcentral.services.azureml.net/workspaces/c9014223c85d4766ac510d469977b6e0/services/8f426f385b3b436f97d22c4c94467108/execute?api-version=2.0&details=true');
-http.Response response = response;
-class InputScreen extends StatelessWidget {
-  final _ageController = TextEditingController();
-  final _sexController = TextEditingController();
-  final _cerebralPalsyController = TextEditingController();
-  final _bloodPressureController = TextEditingController();
-  final _cholesterolController = TextEditingController();
-  final _fastingBlueSugarController = TextEditingController();
-  //final  _restEcgController = TextEditingController();
-  final _maxHeartRateController = TextEditingController();
-  final _exangController = TextEditingController();
-  //final  _oldpeakController = TextEditingController();
-  final _slopeController = TextEditingController();
-  final _caController = TextEditingController();
+    'https://ussouthcentral.services.azureml.net/workspaces/c9014223c85d4766ac510d469977b6e0/services/8f426f385b3b436f97d22c4c94467108/execute?api-version=2.0&details=true/&&format=swagger');
 
-  InputScreen({super.key});
+var ageController = TextEditingController();
+var sexController = TextEditingController();
+var cpController = TextEditingController();
+var trestbpsController = TextEditingController();
+var cholController = TextEditingController();
+var fbsController = TextEditingController();
+var restecgController = TextEditingController();
+var thalachController = TextEditingController();
+var exangController = TextEditingController();
+var oldpeakController = TextEditingController();
+var slopeController = TextEditingController();
+var caController = TextEditingController();
 
+class InputScreen extends StatefulWidget {
+  const InputScreen({super.key});
+
+  @override
+  State<InputScreen> createState() => _InputScreenState();
+}
+
+class _InputScreenState extends State<InputScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+      body: Center(
+        child: ListView(
+          padding: EdgeInsets.all(10),
           children: [
-            const Padding(
-              padding:
-                  EdgeInsets.only(top: 30, right: 16, left: 16, bottom: 30),
-              child: Text(
+            Padding(
+              padding: EdgeInsets.only(top: 25),
+              child: const Text(
                 "Steve Jobs",
                 style: TextStyle(
                   fontWeight: FontWeight.w700,
@@ -48,343 +48,129 @@ class InputScreen extends StatelessWidget {
                 ),
               ),
             ),
-            Expanded(
-              child: ListView(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
-                    child: Container(
-                      margin: const EdgeInsets.only(bottom: 20),
-                      height: 65,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(color: Colors.black),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: TextField(
-                        controller: _ageController,
-                        decoration: const InputDecoration(
-                            border: InputBorder.none, hintText: ' Age'),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
-                    child: Container(
-                      margin: const EdgeInsets.only(bottom: 20),
-                      height: 65,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(color: Colors.black),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: TextField(
-                        controller: _sexController,
-                        decoration: const InputDecoration(
-                            border: InputBorder.none, hintText: ' Sex'),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
-                    child: Container(
-                      margin: const EdgeInsets.only(bottom: 20),
-                      height: 65,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(color: Colors.black),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: TextField(
-                        controller: _cerebralPalsyController,
-                        decoration: const InputDecoration(
-                            border: InputBorder.none,
-                            hintText: ' Cerebral Palsy'),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
-                    child: Container(
-                      margin: const EdgeInsets.only(bottom: 20),
-                      height: 65,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(color: Colors.black),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: TextField(
-                        controller: _bloodPressureController,
-                        decoration: const InputDecoration(
-                            border: InputBorder.none,
-                            hintText: ' Blood Pressure'),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
-                    child: Container(
-                      margin: const EdgeInsets.only(bottom: 20),
-                      height: 65,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(color: Colors.black),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: TextField(
-                        controller: _cholesterolController,
-                        decoration: const InputDecoration(
-                            border: InputBorder.none, hintText: ' Cholesterol'),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
-                    child: Container(
-                      margin: const EdgeInsets.only(bottom: 20),
-                      height: 65,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(color: Colors.black),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: TextField(
-                        controller: _maxHeartRateController,
-                        decoration: const InputDecoration(
-                            border: InputBorder.none,
-                            hintText: 'Max Hearth Rate'),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
-                    child: Container(
-                      margin: const EdgeInsets.only(bottom: 20),
-                      height: 65,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(color: Colors.black),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: TextField(
-                        controller: _fastingBlueSugarController,
-                        decoration: const InputDecoration(
-                            border: InputBorder.none,
-                            hintText: ' Fasting Blue Sugar'),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
-                    child: Container(
-                      margin: const EdgeInsets.only(bottom: 20),
-                      height: 65,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(color: Colors.black),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: TextField(
-                        controller: _exangController,
-                        decoration: const InputDecoration(
-                            border: InputBorder.none, hintText: ' Exang'),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
-                    child: Container(
-                      margin: const EdgeInsets.only(bottom: 20),
-                      height: 65,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(color: Colors.black),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: TextField(
-                        controller: _slopeController,
-                        decoration: const InputDecoration(
-                            border: InputBorder.none, hintText: ' Slope'),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
-                    child: Container(
-                      margin: const EdgeInsets.only(bottom: 20),
-                      height: 65,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(color: Colors.black),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: TextField(
-                        controller: _caController,
-                        decoration: const InputDecoration(
-                            border: InputBorder.none, hintText: ' Ca'),
-                      ),
-                    ),
-                  ),
-                ],
+            ListTile(
+              title: TextField(
+                controller: ageController,
+                decoration: const InputDecoration(
+                  hintText: "Age",
+                ),
+              ),
+            ),
+            ListTile(
+              title: TextField(
+                controller: sexController,
+                decoration: const InputDecoration(
+                  hintText: "Sex",
+                ),
+              ),
+            ),
+            ListTile(
+              title: TextField(
+                controller: cpController,
+                decoration: const InputDecoration(
+                  hintText: "Cerebral Palsy",
+                ),
+              ),
+            ),
+            ListTile(
+              title: TextField(
+                controller: trestbpsController,
+                decoration: const InputDecoration(
+                  hintText: "Blood Pressure",
+                ),
+              ),
+            ),
+            ListTile(
+              title: TextField(
+                controller: cholController,
+                decoration: const InputDecoration(
+                  hintText: "Cholesterol",
+                ),
+              ),
+            ),
+            ListTile(
+              title: TextField(
+                controller: fbsController,
+                decoration: const InputDecoration(
+                  hintText: "Fasting Blue Sugar",
+                ),
+              ),
+            ),
+            ListTile(
+              title: TextField(
+                controller: restecgController,
+                decoration: const InputDecoration(
+                  hintText: "Name",
+                ),
+              ),
+            ),
+            ListTile(
+              title: TextField(
+                controller: thalachController,
+                decoration: const InputDecoration(
+                  hintText: "Max Heart Rate",
+                ),
+              ),
+            ),
+            ListTile(
+              title: TextField(
+                controller: exangController,
+                decoration: const InputDecoration(
+                  hintText: "Exang",
+                ),
+              ),
+            ),
+            ListTile(
+              title: TextField(
+                controller: oldpeakController,
+                decoration: const InputDecoration(
+                  hintText: "Old Peak",
+                ),
+              ),
+            ),
+            ListTile(
+              title: TextField(
+                controller: slopeController,
+                decoration: const InputDecoration(
+                  hintText: "Slope",
+                ),
+              ),
+            ),
+            ListTile(
+              title: TextField(
+                controller: caController,
+                decoration: const InputDecoration(
+                  hintText: "Ca",
+                ),
               ),
             ),
             Container(
-                alignment: Alignment.center,
-                height: 56,
-                width: MediaQuery.of(context).size.width,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                      onPressed: ()  async {
-                       
-                  
-                     final ReportResult result = await makePostRequest(_ageController.text, _sexController.text, _cerebralPalsyController.text, _bloodPressureController.text, _cholesterolController.text, _fastingBlueSugarController.text, "", _maxHeartRateController.text, _exangController.text, "", _slopeController.text, _caController.text, "0", "0") ;
-                        showModalBottomSheet<void>(
-                          
-                            context: context,
-                            builder: (context) {
-                              return GestureDetector(
-                                behavior: HitTestBehavior.opaque,
-                                onTap: () {},
-                                child: Card(
-                                  elevation: 5,
-                                  child: ListView(
-                                    children: [
-                                      // text ---> Report
-                                      const Text(
-                                          "Report",
-                                          style: TextStyle(
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.w700),
-                                        ),
-                                      
-
-                                      // Health Disease Risk container
-                                      // container--->row----column
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 10),
-                                        child: Container(
-                                          height: 150,
-                                          width: 50,
-                                          decoration: BoxDecoration(
-                                            color: Color(0xffDCEDF9),
-                                            borderRadius:
-                                                BorderRadius.circular(24),
-                                          ),
-                                          child: Row(children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 15, top: 20),
-                                              child: Column(
-                                                children: [
-                                                  Container(
-                                                    child: const Text(
-                                                      "Heart Disease Risk",
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.w400,
-                                                          fontSize: 16),
-                                                    ),
-                                                  ),
-                                                  SizedBox(
-                                                    height: 15,
-                                                  ),
-                                                  Text(
-                                                    result.ScoredProbabilitiesFor1.toString(),
-                                                    style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w400,
-                                                        fontSize: 20),
-                                                  ),
-                                                ],
-                                              ),
-                                            )
-                                          ]),
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 5,
-                                      ),
-
-                                      // row----cont
-                                  
-                                    ],
-                                  ),
-                                ),
-                              );
-                            });
-                            
-                             print(result.ScoredProbabilitiesFor1);
-                      },
-                      child: Text("Show Result"),
-                    ),
-                  ],
-                )), // buton
-          ],
-        ),
-      ),
-      bottomNavigationBar: Container(
-        height: 70,
-        color: Colors.white,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Column(
-              children: [
-                IconButton(
-                  icon: Icon(
-                    Icons.book_sharp,
-                    size: 40,
-                    color: Colors.grey,
-                  ),
-                  onPressed: () {},
-                ),
-                Text(
-                  "Report",
-                  style: TextStyle(color: Color(0xff7B8D9E)),
-                ),
-              ],
-            ),
-            Column(
-              children: [
-                IconButton(
-                  icon: Icon(
-                    Icons.home,
-                    size: 40,
-                    color: Colors.grey,
-                  ),
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => HomeScreen()));
-                  },
-                ),
-                Text(
-                  "Home",
-                  style: TextStyle(color: Color(0xff7B8D9E)),
-                ),
-              ],
-            ),
-            Column(
-              children: [
-                IconButton(
-                  icon: Icon(
-                    Icons.notifications_sharp,
-                    size: 40,
-                    color: Colors.grey,
-                  ),
-                  onPressed: () {},
-                ),
-                Text(
-                  "Notifications",
-                  style: TextStyle(color: Color(0xff7B8D9E)),
-                ),
-              ],
+              alignment: Alignment.center,
+              child: ElevatedButton(
+                onPressed: () async {
+                  final Output1 result = await makePostRequest(
+                      ageController.text,
+                      sexController.text,
+                      cpController.text,
+                      trestbpsController.text,
+                      cholController.text,
+                      fbsController.text,
+                      restecgController.text,
+                      thalachController.text,
+                      exangController.text,
+                      oldpeakController.text,
+                      slopeController.text,
+                      caController.text,
+                      "0",
+                      "0");
+                  String probability = result.scoredProbabilitiesForClass1;
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ReportScreen(probability)));
+                },
+                child: Text("Show Result"),
+              ),
             ),
           ],
         ),
@@ -393,79 +179,54 @@ class InputScreen extends StatelessWidget {
   }
 }
 
-
-Future<ReportResult> makePostRequest(String age, String sex, String cp, String trestbps, String chol, String fbs, String restecg, String thalach, String exang, String oldpeak, String slope,  String ca, String thal,String target) async {
+Future<Output1> makePostRequest(
+    String age,
+    String sex,
+    String cp,
+    String trestbps,
+    String chol,
+    String fbs,
+    String restecg,
+    String thalach,
+    String exang,
+    String oldpeak,
+    String slope,
+    String ca,
+    String thal,
+    String target) async {
   final headers = {
-            'Content-Type':'application/json', 
-            'Authorization':('Bearer '+ api_key),
-            "Accept": "application/json",
-        };
+    'Content-Type': 'application/json',
+    'Authorization': ('Bearer $api_key'),
+    "Accept": "application/json",
+  };
   final json = jsonEncode({
-  "Inputs": {
-    "input1": {
-      "ColumnNames": [
-        "age",
-        "sex",
-        "cp",
-        "trestbps",
-        "chol",
-        "fbs",
-        "restecg",
-        "thalach",
-        "exang",
-        "oldpeak",
-        "slope",
-        "ca",
-        "thal",
-        "target"
-      ],
-      "Values": [
-        [
-          age,
-          sex,
-          cp,
-          trestbps,
-          chol,
-          chol,
-          fbs,
-          restecg,
-          thalach,
-          exang,
-          oldpeak,
-          slope,
-          ca,
-          thal
-        ],
-        [
-          "0",
-          "0",
-          "0",
-          "0",
-          "0",
-          "0",
-          "0",
-          "0",
-          "0",
-          "0",
-          "0",
-          "0",
-          "0",
-          "0"
-        ]
+    "Inputs": {
+      "input1": [
+        {
+          "age": age,
+          "sex": sex,
+          "cp": cp,
+          "trestbps": trestbps,
+          "chol": chol,
+          "fbs": fbs,
+          "restecg": restecg,
+          "thalach": thalach,
+          "exang": exang,
+          "oldpeak": oldpeak,
+          "slope": slope,
+          "ca": ca,
+          "thal": thal,
+          "target": target
+        }
       ]
-    }
-  },
-  "GlobalParameters": {}
-});
+    },
+    "GlobalParameters": {}
+  });
+
   final response = await http.post(url, headers: headers, body: json);
-  print("Tam yaşında"+age);
-  print('Status code: ${response.statusCode}');
-  print('Body: ${response.body}');
-  //final jsonResponse = jsonDecode(response.body).cast<Map<String, dynamic>>();
-  List cmList = (jsonDecode(response.body) as List).map((data) => new ReportResult.fromJson(data)).toList();
-  return cmList.first;
-
-
-
- 
+  print(response.body);
+  Map<String, dynamic> jsonData = jsonDecode(response.body);
+  Results results = Results.fromJson(jsonData['Results']);
+  print(results);
+  return results.output1[0];
 }

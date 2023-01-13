@@ -1,60 +1,18 @@
 import 'package:flutter/material.dart';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
-import 'package:projedonem/ReportResult.dart';
-
-import '../Report.dart';
-String api_key =
-    'JBJ0oJZjAAyYeQ1uA8Cgb8IukRF2MBB2lhlHOYZxkIvxly9A+Zu89f+5MZZxnTTwt79khJJaU+29+AMCNlwLrQ==';
-Uri url = Uri.parse(
-    'https://ussouthcentral.services.azureml.net/workspaces/c9014223c85d4766ac510d469977b6e0/services/8f426f385b3b436f97d22c4c94467108/execute?api-version=2.0&details=true');
 
 
-late ReportResult reportResult;
-
-
-class ReportScreen extends StatelessWidget {
-  String age;
-  String sex;
-  String cp;
-  String trestbps;
-  String chol;
-  String fbs;
-  String restecg;
-  String thalach;
-  String exang;
-  String oldpeak;
-  String slope;
-  String ca;
+class ReportScreen extends StatefulWidget {
+  String probability;
   //ReportScreen(this.response);
-  ReportScreen(this.age,this.sex,this.cp,this.trestbps,this.chol,this.fbs,this.restecg,this.thalach,this.exang,this.oldpeak,this.slope,this.ca) {
-    age = age;
-    sex = sex;
-    cp = cp;
-    trestbps = trestbps;
-    chol = chol;
-    fbs = fbs;
-    restecg = restecg;
-    thalach = thalach;
-    exang = exang;
-    oldpeak = oldpeak;
-    slope = slope;
-    ca = ca;
-   // makePostRequest( age,  sex,  cp,  trestbps,  chol,  fbs,  restecg,  thalach,  exang,  oldpeak,  slope,   ca,  "0", "1");
-  }
-    // TODO: implement ReportScreen
-    //ReportResult reportResult = makePostRequest(report.age,report.sex,report.cp,report.trestbps,report.chol,report.fbs,report.restecg,report.thalach,report.exang,report.oldpeak,report.slope,report.ca,report.thal,report.target) as ReportResult;
-    //  Report report ; 
-  /*ReportScreen({super.key, required this.report}) {
-    makePostRequest(report.age, report.sex, report.cp, report.trestbps, report.chol, report.fbs, report.restecg, report.thalach, report.exang, report.oldpeak, report.slope, report.ca, report.thal, report.target);
-  }*/
- 
-  
+  ReportScreen(this.probability);
+
+  @override
+  State<ReportScreen> createState() => _ReportScreenState();
+}
+
+class _ReportScreenState extends State<ReportScreen> {
   @override
   Widget build(BuildContext context) {
-    //makePostRequest("0","1","1","1","1","1","1","1","1","1","1","1","0","0");
-   makePostRequest(age.toString(),sex.toString(),cp.toString(),trestbps.toString(),chol.toString(),fbs.toString(),restecg.toString(),thalach.toString(),exang.toString(),oldpeak.toString(),slope.toString(),
-   ca.toString(),"0","0");
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -93,12 +51,12 @@ class ReportScreen extends StatelessWidget {
                           style: TextStyle(
                               fontWeight: FontWeight.w400, fontSize: 16),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 15,
                         ),
                         Text(
-                        reportResult.ScoredProbabilitiesFor1.toString(),
-                        //   reportResult.ScoredProbabilitiesFor1.toString(),
+                          widget.probability,
+                
                           style: TextStyle(
                               fontWeight: FontWeight.w400, fontSize: 15),
                         ),
@@ -108,11 +66,10 @@ class ReportScreen extends StatelessWidget {
                 ]),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 22,
             ),
 
-            // row----cont
             Padding(
               padding: const EdgeInsets.only(
                 left: 27,
@@ -135,7 +92,7 @@ class ReportScreen extends StatelessWidget {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Icon(
+                               const  Icon(
                                   Icons.water_drop_outlined,
                                   color: Color(0xff9D4C6C),
                                 ),
@@ -146,7 +103,7 @@ class ReportScreen extends StatelessWidget {
                               ],
                             ),
                           ),
-                          Padding(
+                          const Padding(
                             padding: const EdgeInsets.only(left: 23, top: 17),
                             child: Text(
                               "Blood Group",
@@ -154,10 +111,10 @@ class ReportScreen extends StatelessWidget {
                                   fontWeight: FontWeight.w400, fontSize: 14),
                             ),
                           ),
-                          SizedBox(
+                         const  SizedBox(
                             height: 4,
                           ),
-                          Padding(
+                        const   Padding(
                             padding: const EdgeInsets.only(left: 23),
                             child: Text(
                               "A+",
@@ -167,7 +124,7 @@ class ReportScreen extends StatelessWidget {
                           ),
                         ]),
                   ),
-                  SizedBox(
+                 const  SizedBox(
                     width: 12,
                   ),
                   Container(
@@ -184,22 +141,26 @@ class ReportScreen extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Icon(
-                              Icons.water_drop_outlined,
-                              color: Color(0xffE09F1F),
+                            Container(
+                              child: const Icon(
+                                Icons.water_drop_outlined,
+                                color: Color(0xffE09F1F),
+                              ),
                             ),
-                            Icon(
-                              Icons.water_drop_outlined,
-                              color: Color(0xffE09F1F),
+                            Container(
+                              child: const Icon(
+                                Icons.water_drop_outlined,
+                                color: Color(0xffE09F1F),
+                              ),
                             ),
                           ],
                         ),
                       ),
-                      Padding(
+                      const Padding(
                         padding: const EdgeInsets.only(left: 23),
                         child: Text("Weight"),
                       ),
-                      Padding(
+                     const  Padding(
                         padding: const EdgeInsets.only(left: 23),
                         child: Text(
                           "80 Kg",
@@ -221,72 +182,3 @@ class ReportScreen extends StatelessWidget {
 
 
 
-Future<void> makePostRequest(String age, String sex, String cp, String trestbps, String chol, String fbs, String restecg, String thalach, String exang, String oldpeak, String slope,  String ca, String thal,String target) async {
-  final headers = {
-            'Content-Type':'application/json', 
-            'Authorization':('Bearer '+ api_key),
-            "Accept": "application/json",
-        };
-  final json = jsonEncode({
-  "Inputs": {
-    "input1": {
-      "ColumnNames": [
-        "age",
-        "sex",
-        "cp",
-        "trestbps",
-        "chol",
-        "fbs",
-        "restecg",
-        "thalach",
-        "exang",
-        "oldpeak",
-        "slope",
-        "ca",
-        "thal",
-        "target"
-      ],
-      "Values": [
-        [
-          age,
-          sex,
-          cp,
-          trestbps,
-          chol,
-          chol,
-          fbs,
-          restecg,
-          thalach,
-          exang,
-          oldpeak,
-          slope,
-          ca,
-          thal
-        ],
-        [
-          "0",
-          "0",
-          "0",
-          "0",
-          "0",
-          "0",
-          "0",
-          "0",
-          "0",
-          "0",
-          "0",
-          "0",
-          "0",
-          "0"
-        ]
-      ]
-    }
-  },
-  "GlobalParameters": {}
-});
-  final response = await http.post(url, headers: headers, body: json);
-  print("Tam yaşında"+age);
-  print('Status code: ${response.statusCode}');
-  print('Body: ${response.body}');
- // reportResult = jsonDecode(response.body);
-}
