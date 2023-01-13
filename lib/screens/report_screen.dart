@@ -5,6 +5,8 @@ class ReportScreen extends StatefulWidget {
   String probability;
   //ReportScreen(this.response);
   ReportScreen(this.probability);
+ 
+
 
   @override
   State<ReportScreen> createState() => _ReportScreenState();
@@ -55,7 +57,8 @@ class _ReportScreenState extends State<ReportScreen> {
                           height: 15,
                         ),
                         Text(
-                          widget.probability,
+                          
+                          widget.probability.toString(),
                 
                           style: TextStyle(
                               fontWeight: FontWeight.w400, fontSize: 15),

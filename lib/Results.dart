@@ -69,7 +69,7 @@ class Results {
       thal: json['thal'],
       target: json['target'],
       scoredProbabilitiesForClass0: json['Scored Probabilities for Class "0"'],
-      scoredProbabilitiesForClass1: json['Scored Probabilities for Class "1"'],
+      scoredProbabilitiesForClass1: json['Scored Probabilities for Class "1"'] ,
       scoredLabels: json['Scored Labels'],
     );
   }
