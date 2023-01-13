@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'package:projedonem/screens/input_screen.dart';
+import 'package:projedonem/screens/report_screen.dart';
+import '../components/bottomNavigationBar.dart';
 import 'home_screen.dart';
 
 class BlogScreen extends StatelessWidget {
@@ -7,7 +9,10 @@ class BlogScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    
     return Scaffold(
+      //bottomNavigationBar: bottomNavigationBar(context),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -74,71 +79,36 @@ class BlogScreen extends StatelessWidget {
                     ),
                   );
                 }),
-              )
+              ),
+              Container(child: Row(mainAxisAlignment: MainAxisAlignment.center,children: [
+                 Container(alignment: Alignment.center,
+                 child: Column(children: [
+                  IconButton(onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => InputScreen(),));
+                  }, icon: Icon(Icons.report)),Text("Report"),
+                 ]),),
+                 SizedBox(width: 50,),
+                 Container(alignment: Alignment.center,
+                 child: Column(children: [
+                  IconButton(onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen(),));
+                  }, icon: Icon(Icons.home)),Text("Home"),
+                 ]),), 
+                 SizedBox(width: 50,),
+                 Container(alignment: Alignment.center,
+                 child: Column(children: [
+                  IconButton(onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => BlogScreen(),));
+                  }, icon: Icon(Icons.report)),Text("Blog"),
+                 ]),),  
+
+              ]),)
             ],
+            
           ),
         ),
       ),
-      bottomNavigationBar: Container(
-        height: 70,
-        color: Colors.white,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Column(
-              children: [
-                IconButton(
-                  icon: Icon(
-                    Icons.book_sharp,
-                    size: 40,
-                    color: Colors.grey,
-                  ),
-                  onPressed: () {},
-                ),
-                Text(
-                  "Report",
-                  style: TextStyle(color: Color(0xff7B8D9E)),
-                ),
-              ],
-            ),
-            Column(
-              children: [
-                IconButton(
-                  icon: Icon(
-                    Icons.home,
-                    size: 40,
-                    color: Colors.grey,
-                  ),
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => HomeScreen()));
-                  },
-                ),
-                Text(
-                  "Home",
-                  style: TextStyle(color: Color(0xff7B8D9E)),
-                ),
-              ],
-            ),
-            Column(
-              children: [
-                IconButton(
-                  icon: Icon(
-                    Icons.notifications_sharp,
-                    size: 40,
-                    color: Colors.grey,
-                  ),
-                  onPressed: () {},
-                ),
-                Text(
-                  "Notifications",
-                  style: TextStyle(color: Color(0xff7B8D9E)),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
+    
     );
   }
 }

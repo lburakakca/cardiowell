@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'blog_screen.dart';
 import 'input_screen.dart';
+import '../components/bottomNavigationBar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -10,16 +11,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        //Our navigation bar
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.report), label: "Report"),
-          BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: "Home"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.notification_important_sharp),
-              label: "Notification"),
-        ],
-      ),
+     // bottomNavigationBar: bottomNavigationBar(context),
       body: SafeArea(
         //We used SafeArea to avoid sticking to the top of the screen.
         child: Padding(
@@ -35,6 +27,30 @@ class HomeScreen extends StatelessWidget {
               buildText4(),
               buildTest(context),
               buildText5(context),
+                            Container(child: Row(mainAxisAlignment: MainAxisAlignment.center,children: [
+                 Container(alignment: Alignment.center,
+                 child: Column(children: [
+                  IconButton(onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => InputScreen(),));
+                  }, icon: Icon(Icons.report)),Text("Report"),
+                 ]),),
+                 SizedBox(width: 50,),
+                 Container(alignment: Alignment.center,
+                 child: Column(children: [
+                  IconButton(onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen(),));
+                  }, icon: Icon(Icons.home)),Text("Home"),
+                 ]),), 
+                 SizedBox(width: 50,),
+                 Container(alignment: Alignment.center,
+                 child: Column(children: [
+                  IconButton(onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => BlogScreen(),));
+                  }, icon: Icon(Icons.report)),Text("Blog"),
+                 ]),),  
+
+              ]),)
+         
             ],
           ),
         ),
@@ -545,5 +561,6 @@ Widget buildText5(BuildContext context) {
         ),
       ),
     ),
+    
   );
 }

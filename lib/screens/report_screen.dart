@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
-
+import '../components/bottomNavigationBar.dart';
+import '../screens/home_screen.dart';
+import '../screens/blog_screen.dart';
+import '../screens/input_screen.dart';
 class ReportScreen extends StatefulWidget {
   String probability;
   //ReportScreen(this.response);
@@ -14,16 +17,7 @@ class _ReportScreenState extends State<ReportScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        //Our navigation bar
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.report), label: "Report"),
-          BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: "Home"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.notification_important_sharp),
-              label: "Notification"),
-        ],
-      ),
+     // bottomNavigationBar: bottomNavigationBar(context),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -215,6 +209,31 @@ class _ReportScreenState extends State<ReportScreen> {
                 ],
               ),
             ),
+            SizedBox(height: 60,),
+                          Container(child: Row(mainAxisAlignment: MainAxisAlignment.center,children: [
+                 Container(alignment: Alignment.center,
+                 child: Column(children: [
+                  IconButton(onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => InputScreen(),));
+                  }, icon: Icon(Icons.report)),Text("Report"),
+                 ]),),
+                 SizedBox(width: 50,),
+                 Container(alignment: Alignment.center,
+                 child: Column(children: [
+                  IconButton(onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen(),));
+                  }, icon: Icon(Icons.home)),Text("Home"),
+                 ]),), 
+                 SizedBox(width: 50,),
+                 Container(alignment: Alignment.center,
+                 child: Column(children: [
+                  IconButton(onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => BlogScreen(),));
+                  }, icon: Icon(Icons.report)),Text("Blog"),
+                 ]),),  
+
+              ]),),
+            
           ],
         ),
       ),

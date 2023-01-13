@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:projedonem/screens/report_screen.dart';
-
+import '../components/bottomNavigationBar.dart';
 import '../Results.dart';
 
 String api_key =
